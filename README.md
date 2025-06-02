@@ -8,6 +8,11 @@
 
 ---
 
+<p align="center">
+ <img src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats" />
+
+---
+
 ## 🔍 Overview
 
 **Movie Intelligence** adalah platform data-driven yang dibangun menggunakan metadata dari [TMDb (The Movie Database)](https://www.themoviedb.org/) dan dikembangkan oleh Tim VistaMeta untuk mengungkap permintaan pasar film secara real-time, memahami demografi audiens, dan memprediksi potensi revenue. Solusi ini membantu platform OTT dan pelaku industri film memilih konten yang pasti ditonton dan memaksimalkan monetisasi penonton.
