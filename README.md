@@ -112,11 +112,13 @@ mongod --dbpath mongodb+srv://root:1234@mds-db.dtk5gzr.mongodb.net/?retryWrites=
 
 ## PPT 
 Presentasi dalam bentuk power point dapat dilihat disini :
+<a href="Movie Intelligence PPT.pdf"> Klik dan Lihat PPT Berikut! </a>
 
 https://bit.ly/moviintelligence-mds 
 
 
 ## Data Praktikum UAS Manajemen Data Statistika
+<a href="Dataset"> Klik dan Lihat Dataset Berikut! </a>
 
 [https://bit.ly/3HrbSJF](https://bit.ly/dataprakmdsuas) 
 
