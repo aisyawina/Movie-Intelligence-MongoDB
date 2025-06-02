@@ -8,9 +8,10 @@
 
 ---
 
-Berikut adalah demo dari project ini:
+## Demo  
+Berikut adalah tampilan dashboard Movie Intelligence dalam bentuk GIF untuk memberikan gambaran interaktif dan visualisasi data yang telah dikembangkan:
 
-![Demo GIF](src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats")
+![Movie Intelligence Dashboard Demo](./MDS.gif)
 
 ---
 
