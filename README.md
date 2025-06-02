@@ -53,6 +53,8 @@ Platform ini memanfaatkan pipeline agregasi MongoDB sebagai berikut:
 1. Grouping data film berdasarkan genre, bahasa, rating, dan parameter lain.  
 2. Menghitung rata-rata, total, dan distribusi budget, revenue, popularitas.  
 3. Menyajikan insight melalui dashboard interaktif.
+- Agregasi yang kami buat bisa diakses melalui
+    <a href="Agregasi"> Klik dan Lihat Data Berikut! </a>
 
 ---
 
