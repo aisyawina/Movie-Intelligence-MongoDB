@@ -9,7 +9,7 @@
 ---
 
 ## Demo  
-Berikut adalah tampilan dashboard Movie Intelligence dalam bentuk GIF untuk memberikan gambaran interaktif dan visualisasi data yang telah dikembangkan:
+Berikut adalah tampilan dashboard Movie Intelligence dalam bentuk GIF untuk memberikan gambaran interaktif dan visualisasi data yang telah dikembangkan oleh Tim Vistameta:
 
 ![Movie Intelligence Dashboard Demo](./MDS.gif)
 
