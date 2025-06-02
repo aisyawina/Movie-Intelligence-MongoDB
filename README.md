@@ -7,7 +7,9 @@
 <p align="center"> 👥 Vistameta Team </p>
 
 ---
+
 Berikut adalah demo dari project ini:
+
 ![Demo GIF](src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats")
 
 ---
