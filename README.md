@@ -71,6 +71,9 @@ Platform ini memanfaatkan pipeline agregasi MongoDB sebagai berikut:
 - MongoDB Aggregation Framework
 - Studi kasus investasi dan performa konten dari data TMDb
 
+Link Data yang sudah digabung dan akan digunakan :
+  <a href="Data CSV"> Klik dan Lihat Data Berikut! </a>
+
 ---
 
 ## 🛠️ Installation & Usage
