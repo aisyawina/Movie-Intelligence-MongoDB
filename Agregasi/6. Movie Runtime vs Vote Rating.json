@@ -1,0 +1,127 @@
+[
+  {
+    "$addFields": {
+      "runtime (min)": {
+        "$cond": {
+          "if": {
+            "$in": [
+              {
+                "$type": "$runtime (min)"
+              },
+              [
+                "double",
+                "int",
+                "long",
+                "decimal"
+              ]
+            ]
+          },
+          "then": "$runtime (min)",
+          "else": null
+        }
+      },
+      "vote_average (%)": {
+        "$cond": {
+          "if": {
+            "$in": [
+              {
+                "$type": "$vote_average (%)"
+              },
+              [
+                "double",
+                "int",
+                "long",
+                "decimal"
+              ]
+            ]
+          },
+          "then": "$vote_average (%)",
+          "else": null
+        }
+      }
+    }
+  },
+  {
+    "$addFields": {
+      "__alias_0": {
+        "$multiply": [
+          {
+            "$floor": {
+              "$divide": [
+                "$runtime (min)",
+                10
+              ]
+            }
+          },
+          10
+        ]
+      },
+      "__alias_1": {
+        "$multiply": [
+          {
+            "$floor": {
+              "$divide": [
+                "$vote_average (%)",
+                10
+              ]
+            }
+          },
+          10
+        ]
+      }
+    }
+  },
+  {
+    "$group": {
+      "_id": {
+        "__alias_0": "$__alias_0",
+        "__alias_1": "$__alias_1"
+      },
+      "__alias_2": {
+        "$sum": 1
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "__alias_0": "$_id.__alias_0",
+      "__alias_1": "$_id.__alias_1",
+      "__alias_2": 1
+    }
+  },
+  {
+    "$project": {
+      "x": "$__alias_0",
+      "y": "$__alias_1",
+      "color": "$__alias_2",
+      "_id": 0
+    }
+  },
+  {
+    "$group": {
+      "_id": {
+        "x": "$x"
+      },
+      "__grouped_docs": {
+        "$push": "$$ROOT"
+      }
+    }
+  },
+  {
+    "$sort": {
+      "_id.x": 1
+    }
+  },
+  {
+    "$unwind": "$__grouped_docs"
+  },
+  {
+    "$replaceRoot": {
+      "newRoot": "$__grouped_docs"
+    }
+  },
+  {
+    "$limit": 20000
+  }
+]

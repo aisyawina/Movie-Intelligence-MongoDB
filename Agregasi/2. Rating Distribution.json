@@ -1,0 +1,74 @@
+[
+  {
+    "$addFields": {
+      "vote_average (%)": {
+        "$cond": {
+          "if": {
+            "$in": [
+              {
+                "$type": "$vote_average (%)"
+              },
+              [
+                "double",
+                "int",
+                "long",
+                "decimal"
+              ]
+            ]
+          },
+          "then": "$vote_average (%)",
+          "else": null
+        }
+      }
+    }
+  },
+  {
+    "$addFields": {
+      "__alias_0": {
+        "$multiply": [
+          {
+            "$floor": {
+              "$divide": [
+                "$vote_average (%)",
+                10
+              ]
+            }
+          },
+          10
+        ]
+      }
+    }
+  },
+  {
+    "$group": {
+      "_id": {
+        "__alias_0": "$__alias_0"
+      },
+      "__alias_1": {
+        "$sum": 1
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "__alias_0": "$_id.__alias_0",
+      "__alias_1": 1
+    }
+  },
+  {
+    "$project": {
+      "label": "$__alias_0",
+      "value": "$__alias_1",
+      "_id": 0
+    }
+  },
+  {
+    "$sort": {
+      "label": 1
+    }
+  },
+  {
+    "$limit": 5000
+  }
+]

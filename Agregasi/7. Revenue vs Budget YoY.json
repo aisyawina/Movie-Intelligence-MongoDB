@@ -1,0 +1,55 @@
+[
+  {
+    "$group": {
+      "_id": {
+        "__alias_0": "$release_year",
+        "__alias_1": "$revenue",
+        "__alias_2": "$budget"
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "__alias_0": "$_id.__alias_0",
+      "__alias_1": "$_id.__alias_1",
+      "__alias_2": "$_id.__alias_2"
+    }
+  },
+  {
+    "$project": {
+      "x": "$__alias_0",
+      "y": "$__alias_1",
+      "y_series_0": "$__alias_2",
+      "_id": 0
+    }
+  },
+  {
+    "$addFields": {
+      "__multi_series": {
+        "$objectToArray": {
+          "budget": "$y_series_0",
+          "revenue": "$y"
+        }
+      }
+    }
+  },
+  {
+    "$unwind": "$__multi_series"
+  },
+  {
+    "$addFields": {
+      "color": "$__multi_series.k",
+      "y": "$__multi_series.v"
+    }
+  },
+  {
+    "$project": {
+      "__multi_series": 0,
+      "y_series_0": 0
+    }
+  },
+  {
+    "$limit": 50000
+  }
+]

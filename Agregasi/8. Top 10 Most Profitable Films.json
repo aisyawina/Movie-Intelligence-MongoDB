@@ -1,0 +1,68 @@
+[
+  {
+    "$addFields": {
+      "Profit": {
+        "$subtract": [
+          "$revenue",
+          "$budget"
+        ]
+      }
+    }
+  },
+  {
+    "$match": {
+      "Profit": {
+        "$gte": 0
+      }
+    }
+  },
+  {
+    "$group": {
+      "_id": {
+        "__alias_0": "$title"
+      },
+      "__alias_1": {
+        "$avg": "$Profit"
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "__alias_0": "$_id.__alias_0",
+      "__alias_1": 1
+    }
+  },
+  {
+    "$project": {
+      "y": "$__alias_1",
+      "x": "$__alias_0",
+      "_id": 0
+    }
+  },
+  {
+    "$addFields": {
+      "__agg_sum": {
+        "$sum": [
+          "$y"
+        ]
+      }
+    }
+  },
+  {
+    "$sort": {
+      "__agg_sum": -1
+    }
+  },
+  {
+    "$limit": 10
+  },
+  {
+    "$project": {
+      "__agg_sum": 0
+    }
+  },
+  {
+    "$limit": 5000
+  }
+]

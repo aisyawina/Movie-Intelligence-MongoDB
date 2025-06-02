@@ -1,0 +1,33 @@
+[
+  {
+    "$project": {
+      "__alias_0": "$original_title",
+      "__alias_1": "$vote_average (%)",
+      "__alias_2": "$_id"
+    }
+  },
+  {
+    "$project": {
+      "display": "$__alias_0",
+      "sort": "$__alias_1",
+      "_id": "$_id"
+    }
+  },
+  {
+    "$sort": {
+      "sort": -1,
+      "_id": -1
+    }
+  },
+  {
+    "$limit": 1
+  },
+  {
+    "$project": {
+      "_id": 0
+    }
+  },
+  {
+    "$limit": 5000
+  }
+]

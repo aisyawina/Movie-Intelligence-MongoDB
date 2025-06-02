@@ -1,0 +1,74 @@
+[
+  {
+    "$addFields": {
+      "runtime (min)": {
+        "$cond": {
+          "if": {
+            "$in": [
+              {
+                "$type": "$runtime (min)"
+              },
+              [
+                "double",
+                "int",
+                "long",
+                "decimal"
+              ]
+            ]
+          },
+          "then": "$runtime (min)",
+          "else": null
+        }
+      }
+    }
+  },
+  {
+    "$addFields": {
+      "__alias_0": {
+        "$multiply": [
+          {
+            "$floor": {
+              "$divide": [
+                "$runtime (min)",
+                10
+              ]
+            }
+          },
+          10
+        ]
+      }
+    }
+  },
+  {
+    "$group": {
+      "_id": {
+        "__alias_0": "$__alias_0"
+      },
+      "__alias_1": {
+        "$avg": "$popularity"
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "__alias_0": "$_id.__alias_0",
+      "__alias_1": 1
+    }
+  },
+  {
+    "$project": {
+      "x": "$__alias_1",
+      "y": "$__alias_0",
+      "_id": 0
+    }
+  },
+  {
+    "$sort": {
+      "y": 1
+    }
+  },
+  {
+    "$limit": 5000
+  }
+]
