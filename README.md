@@ -7,10 +7,7 @@
 <p align="center"> 👥 Vistameta Team </p>
 
 ---
-
-
-
-<p <img src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats" />
+<img src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats" />
 
 
 
