@@ -117,7 +117,7 @@ https://bit.ly/moviintelligence-mds
 
 ---
 
-## 🙌 Contributors
+## 🙌 Contributors Vistameta Team
 
 Siti Nuradilla - M0501241010
 
