@@ -94,23 +94,80 @@ cd movie-intelligence
 pip install -r requirements.txt
 ```
 
-3. Jalankan database MongoDB:
+3. How to Scrapping Data with Python
+```bash
+from tmdbv3api import TMDb, Movie
+import pandas as pd
+from time import sleep
+
+# --- Setup TMDb ---
+tmdb = TMDb()
+tmdb.api_key = '3e730b30512651f4b46a94a014fbfd06'
+tmdb.language = 'en'
+
+movie = Movie()
+
+# --- Ambil 200 halaman film populer ---
+movie_data = []
+
+for page in range(1, 201):  # Ambil halaman 1 sampai 200 (sekitar 4000 film)
+    print(f"Processing page {page}...")
+    try:
+        popular_movies = movie.popular(page=page)
+
+        for m in popular_movies:
+            try:
+                details = movie.details(m.id)
+                genres = ", ".join([g['name'] for g in details.genres]) if details.genres else None
+
+                movie_data.append({
+                    'movie_id': m.id,
+                    'title': m.title,
+                    'original_title': details.original_title,
+                    'overview': m.overview,
+                    'release_date': m.release_date,
+                    'vote_average (%)': round(m.vote_average * 10, 2),
+                    'vote_count': m.vote_count,
+                    'popularity': m.popularity,
+                    'runtime (min)': details.runtime,
+                    'status': details.status,
+                    'tagline': details.tagline,
+                    'genres': genres,
+                    'budget': details.budget,
+                    'revenue': details.revenue,
+                    'original_language': details.original_language
+                })
+
+                sleep(0.5)  # Hindari rate limit
+            except Exception as e:
+                print(f"Failed to get details for movie ID {m.id}: {e}")
+    except Exception as e:
+        print(f"Failed to get page {page}: {e}")
+
+# --- Simpan ke DataFrame ---
+df = pd.DataFrame(movie_data)
+df
+# --- Simpan ke CSV ---
+df.to_csv('popular_movies_200_pages.csv', index=False)
+```
+
+
+4. Jalankan database MongoDB:
 ```bash
 mongod --dbpath mongodb+srv://root:1234@mds-db.dtk5gzr.mongodb.net/?retryWrites=true&w=majority&appName=mds-db
 ```
 
-4. Akses dashboard visualisasi:
+5. Akses dashboard visualisasi:
 
    Buka link dashboard berikut untuk melihat insight real-time dan interaktif:
 
    https://bit.ly/dashboardmovieintelligence-mds 
 
 
-6. Akses dashboard visualisasi untuk insight real-time (link atau instruksi akan diberikan)
 
 ---
 
-## PPT 
+##  Project Movie Intelligence PPT 
 Presentasi dalam bentuk power point dapat dilihat disini :
 <a href="Movie Intelligence PPT.pdf"> Klik dan Lihat PPT Berikut! </a>
 
