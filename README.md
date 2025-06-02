@@ -10,8 +10,7 @@
 
 
 
-<p align="center">
- <img src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats" />
+<p <img src="MDS.gif" width="1000px" height="350px" alt="GitHub Readme Stats" />
 
 
 
