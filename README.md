@@ -85,23 +85,9 @@ Link Data yang sudah digabung dan akan digunakan :
 
 ---
 
-## 🛠️ Installation & Usage
+## 🛠️ How to Scrapping Data
 
-1. Clone repository ini
-
-```bash
-git clone https://github.com/yourusername/movie-intelligence.git
-cd movie-intelligence
-```
-
-2. Setup environment
-
-   Pastikan sudah terinstall Python 3.x, MongoDB, dan library pendukung (pandas, pymongo, dsb).
-```bash
-pip install -r requirements.txt
-```
-
-3. How to Scrapping Data with Python
+1. How to Scrapping Data with Python
 ```bash
 from tmdbv3api import TMDb, Movie
 import pandas as pd
@@ -158,12 +144,12 @@ df
 df.to_csv('popular_movies_200_pages.csv', index=False)
 ```
 
-4. Jalankan database MongoDB:
+2. Jalankan database MongoDB:
 ```bash
 mongod --dbpath mongodb+srv://root:1234@mds-db.dtk5gzr.mongodb.net/?retryWrites=true&w=majority&appName=mds-db
 ```
 
-5. Simpan Data Hasil Scrapping ke MongoDB
+3. Simpan Data Hasil Scrapping ke MongoDB
 ```bash
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -196,12 +182,11 @@ else:
     print(f"✅ 1 data dimasukkan (ID: {result.inserted_id})")
 ```
 
-6. Akses dashboard visualisasi:
+4. Akses dashboard visualisasi:
 
    Buka link dashboard berikut untuk melihat insight real-time dan interaktif:
 
    https://bit.ly/dashboardmovieintelligence-mds 
-
 
 ---
 
