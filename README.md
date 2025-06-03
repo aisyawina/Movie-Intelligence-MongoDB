@@ -158,18 +158,49 @@ df
 df.to_csv('popular_movies_200_pages.csv', index=False)
 ```
 
-
 4. Jalankan database MongoDB:
 ```bash
 mongod --dbpath mongodb+srv://root:1234@mds-db.dtk5gzr.mongodb.net/?retryWrites=true&w=majority&appName=mds-db
 ```
 
-5. Akses dashboard visualisasi:
+5. Simpan Data Hasil Scrapping ke MongoDB
+```bash
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+import json
+
+# 1. Setup Koneksi MongoDB
+uri = "mongodb+srv://root:1234@mds-db.dtk5gzr.mongodb.net/?retryWrites=true&w=majority&appName=mds-db"
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# 2. Pilih Database & Collection
+db = client['mds-db']
+collection = db['popular_movies']
+
+# 3. Tes Koneksi
+try:
+    client.admin.command('ping')
+    print("✅ Berhasil terhubung ke MongoDB!")
+except Exception as e:
+    print("❌ Gagal terhubung:", e)
+
+# 4. Insert Data dari JSON
+with open('/content/drive/Shared drives/Praktikum - UAS/popular_movies.json', 'r') as file:
+    data = json.load(file)
+
+if isinstance(data, list):
+    result = collection.insert_many(data)
+    print(f"✅ {len(result.inserted_ids)} data dimasukkan!")
+else:
+    result = collection.insert_one(data)
+    print(f"✅ 1 data dimasukkan (ID: {result.inserted_id})")
+```
+
+6. Akses dashboard visualisasi:
 
    Buka link dashboard berikut untuk melihat insight real-time dan interaktif:
 
    https://bit.ly/dashboardmovieintelligence-mds 
-
 
 
 ---
